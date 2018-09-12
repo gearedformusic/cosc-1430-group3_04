@@ -1,0 +1,258 @@
+/*this code was written in vscode, if it doesn't work on VS,
+then you may have to compile it using g++ or gcc and then run the executable file.
+The command to compile and run the code is “$ g++ name_of_script.cpp;./a.out “*/
+
+/*the only part that needs adding is shrink the array to half its size, and print the message “array shrinked”
+*/
+
+//Can yall work on it?
+
+//if you enter multiple 1s and then delete 1, it deletes all the 1s.
+
+#include<iostream>
+using namespace std;
+
+//Function Definitions
+char Print_Menu();
+void Print_Elements(int,int *,int);
+int* Add_Elements(int *,int,int,int *address_offset,int *address_size);
+int *Delete_Elements(int*,int* address_offset,int *address_size);
+int *HalfSize(int*,int*,int*);
+
+
+int main()
+{
+
+char option; //option contains the user defined
+
+//memory allocation
+int *dynamic_array = NULL,size=2,offset=-1;
+dynamic_array = new int[size];
+
+int *address_offset = &offset;
+int *address_size = &size;
+
+if(!dynamic_array)
+  cout<<"Memory Allocation has failed\n";
+//end declaration memory allocation
+
+//cout<<"The array contains "<<dynamic_array[0]<<"(2):"<<dynamic_array[1];
+
+
+do{
+
+
+option = Print_Menu();
+switch(option)
+{
+  case 'p':
+      //Prints the elements;
+      Print_Elements(size,dynamic_array,offset);
+  break;
+
+  case 'a':
+      //call the add elements function
+      dynamic_array = Add_Elements(dynamic_array,size,offset,address_offset,address_size);
+  break;
+
+  case 'd':
+      dynamic_array = Delete_Elements(dynamic_array,address_offset,address_size);
+      dynamic_array = HalfSize(dynamic_array,address_offset,address_size);
+  break;
+
+  case 'r':
+      if(offset==-1)
+          cout<<"S: "<<size<<", E: "<<0;
+      else
+          cout<<"S: "<<size<<", E: "<<offset+1;
+  break;
+
+  case 'e':
+  //exit
+  break;
+
+
+}
+}while(option!='e');
+
+
+
+
+delete [] dynamic_array;
+dynamic_array = NULL;  
+   return 1;
+
+}
+
+
+/* Function to Print_Menu*/
+char Print_Menu()
+{
+
+char option;
+cout<<"\n(p): Print elements\n\
+(a): Add element\n\
+(d): Delete element\n\
+(r): Return size\n\
+(e): Exit\n\ ";
+cout<<"\n\nEnter option:";
+cin>>option;
+return option;
+
+}
+
+/*End definition of Print_Menu */
+
+
+
+
+/* Function to Print Elements*/
+
+void Print_Elements(int size, int *dynamic_array,int offset)
+{
+
+  if(size==0 || dynamic_array==NULL|| offset==-1)
+  cout<<"No Elements\n";
+  else{
+      for(int i=0;i<=offset;++i)
+          cout<<*(dynamic_array+i)<<", ";
+  }
+
+}
+//End declaration of Printing Elements
+
+
+//Start Declaration of Adding Elements
+
+int* Add_Elements(int *dynamic_array,int size,int offset,int *address_offset,int *address_size)
+{
+      int element_to_add;
+      cout<<"Enter Element: ";
+      cin>>element_to_add;
+
+      if(offset==-1)
+          {
+              offset=0;
+              dynamic_array[offset] = element_to_add;
+             // Print_Elements(size,dynamic_array,offset);
+             *address_offset = offset;
+             return dynamic_array;
+          }
+
+      //when we need to allocate some more memory
+      if(offset+1==size)
+      {
+              int *arr_temp = new int[size*2];
+              for(int i=0;i<=offset;i++)
+              {
+                  arr_temp[i] = dynamic_array[i];
+
+              }
+
+              arr_temp[offset+1]=element_to_add;
+              delete [] dynamic_array;
+              dynamic_array = NULL;
+              size*=2;
+              offset=offset+1;
+              cout<<"Array Expanded\n";
+
+              *address_offset = offset;
+              *address_size = size;
+              return arr_temp;
+
+      }
+    
+      if(offset+1<size){
+          dynamic_array[offset+1] = element_to_add;
+          *address_offset = offset+1;
+          return dynamic_array;
+      }
+
+
+}
+
+
+int *Delete_Elements(int *dynamic_array,int* address_offset,int *address_size)
+{
+
+      int element_to_delete,flag=-1;
+      cout<<"Enter the element to be deleted:";
+      cin>>element_to_delete;
+  int counter=0;
+
+          for(int i=0;i<= *(address_offset);++i)
+              {
+                if(dynamic_array[i]==element_to_delete)
+                flag=1;
+
+              }
+        
+          if(flag==-1)
+          {
+              cout<<"Not there\n";
+              return dynamic_array;
+          }
+
+          if(flag)
+          {
+            int flag_similar=0;
+             int *arr_temp = new int[*address_size];
+
+              for(int i=0;i<=*(address_offset);++i)
+              { 
+                
+                  
+                 //  arr_temp[counter] = dynamic_array[i];
+//                    counter++;
+
+
+
+                 if(element_to_delete!=dynamic_array[i])
+                      {
+                          arr_temp[counter]=dynamic_array[i];
+                         counter++;
+                        
+                      }
+
+           if(element_to_delete ==  dynamic_array[i])
+               element_to_delete = (float) 0.4;
+
+                  
+
+             
+             
+              }
+
+                      delete [] dynamic_array;
+                      dynamic_array= NULL;
+                      *address_offset = counter-1;
+                      return arr_temp;
+                    
+
+          }
+
+
+
+}
+
+
+int *HalfSize(int *dynamic_array,int *address_offset,int *address_size)
+{
+   if(*address_offset+1<=  *address_size/2)
+   {
+       int *arr_temp = new int[*address_size/2];
+       cout<<"Array shrinked\n";
+       for(int i=0;i<=*address_offset;i++)
+       {  
+           arr_temp[i]=dynamic_array[i];
+       }
+
+       *address_size/=2;
+       return arr_temp;
+   }
+
+
+}
+
+
+
