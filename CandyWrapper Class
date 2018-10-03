@@ -1,0 +1,45 @@
+class CandyWrapper
+{
+public:
+	CandyWrapper(); // Default Constructer
+	CandyWrapper(float len, float wid, string col); // Constructor that takes parameters
+	CandyWrapper(const CandyWrapper& other); // Copy Constructor
+	// Mutators
+	void SetLength(float len) { len = length; }
+	void SetWidth(float wid) { wid = width; }
+	void SetColor(string col) { col = color; }
+	// Accessors
+	float GetLength() { return length;}
+	float GetWidth() { return width; }
+	string GetColor() { return color; }
+	// Print Function
+	void printItem()
+	{
+		cout << "a length of " << length << " in, a width of " << width << " in and a " << color << " color" << endl;
+	}
+private:
+	float length;
+	float width;
+	string color;
+};
+// Default Constructer
+CandyWrapper::CandyWrapper()
+{
+	length = 0;
+	width = 0;
+	color = "NA";
+}
+// Constructer that takes parameters
+CandyWrapper::CandyWrapper(float len, float wid, string col)
+{
+	length = len;
+	width = wid;
+	color = col;
+}
+// Copy Constructer
+CandyWrapper::CandyWrapper(const CandyWrapper& other)
+{
+	length = other.length;
+	width = other.width;
+	color = other.color;
+}
