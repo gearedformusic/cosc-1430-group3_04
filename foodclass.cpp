@@ -96,11 +96,13 @@ void Food::printItem() {
 
 int main()
 {
+	/*//Test bench
 	Food fd1 = Food(1, 200, true);
 	Food fd2 = Food(fd1);
 	fd1.printItem();
 	if(fd1 == fd2)
 	fd1.printItem();
+	*/
 	
 }
 
