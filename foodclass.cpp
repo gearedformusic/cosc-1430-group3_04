@@ -21,7 +21,7 @@ Or
 I am not​ a vegetarian Food, my volume is 0.05 fl. Oz and I have
 100 calories
 3*/
-#include "stdafx.h"
+
 #include <iostream>
 using namespace std;
 
@@ -30,7 +30,7 @@ using namespace std;
 class Food {
 private:
 	float volume;
-	
+
 protected:
 	int calories;
 	bool vegetarian;
@@ -50,9 +50,9 @@ public:
 	void SetVegetarian(bool veg) { vegetarian = veg; }
 
 	//Accessors
-	void PrintVolume() { cout << volume << " fl. Oz"; }
-	void PrintCalories() { cout << calories << " calories"; }
-	void PrintVegetarian();
+	float GetVolume(){ return volume; }
+	int GetCalories(){ return calories; }
+	bool GetVegetarian(){return vegetarian;}
 	void printItem();
 };
 
@@ -78,18 +78,11 @@ bool Food::operator==(Food yum) {
 	return ((yum.volume == volume) && (yum.calories == calories) && (yum.vegetarian == vegetarian));
 }
 
-void Food::PrintVegetarian() {
-	if (!vegetarian)
-		cout << " not";
-}
 void Food::printItem() {
 	cout << "I am";
-	PrintVegetarian();
-	cout << " a vegetarian Food, my volume is ";
-	PrintVolume();
-	cout << " and I have ";
-	PrintCalories();
-	cout << endl;
+	if (!GetVegetarian())
+		cout << " not";
+	cout << " a vegetarian Food, my volume is " << GetVolume() << " fl. Oz and I have " << GetCalories() << " calories"<< endl;
 }
 
 
@@ -97,12 +90,13 @@ void Food::printItem() {
 int main()
 {
 	/*//Test bench
-	Food fd1 = Food(1, 200, true);
+	Food fd1 = Food(1, 200, false);
 	Food fd2 = Food(fd1);
 	fd1.printItem();
 	if(fd1 == fd2)
 	fd1.printItem();
 	*/
-	
+
+
 }
 
