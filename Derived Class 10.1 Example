@@ -1,5 +1,5 @@
 //Derived class example from zybooks 10.1
-
+//outputs "Moving at: 25"
 
 #include <iostream>
 using namespace std;
