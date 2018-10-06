@@ -18,25 +18,33 @@ public:
    void setVeg(bool veg){vegetarian = veg;};
   
    bool operator == ( Food const&Food_2);
-   void printItem();   
+   void printItem(); 
+   void printItem(string var);
   
-   Food(){volume =0;   //default constructor
+   Food()
+   {
+   volume =0;   //default constructor
    calories = 0;
    vegetarian =true;
    };
-   Food(float vol_con,int cal_con,bool veg_con){ //parameteriezed constructor
+   Food(float vol_con,int cal_con,bool veg_con)
+   { //parameteriezed constructor
        volume = vol_con;
        calories = cal_con;
        vegetarian = veg_con;
    };
+   
    Food(const Food &a)
    {
        volume = a.volume;
        calories = a.calories;
        vegetarian = a.vegetarian;
    };
+
 };
 
+
+  
 bool Food::operator==(Food const&Food_2)
 {
    if(vegetarian == Food_2.vegetarian && calories==Food_2.calories && volume==Food_2.volume)
@@ -57,12 +65,21 @@ void Food::printItem()
    }
 }
 
+void Food::printItem(string var)
+{ 
+ cout<<"I am a vegetarian "<<var<<", my volume is "<<volume<<" fl. Oz and I have "<<calories<<" calories";
+}
+
+
+
+
 
 class CandyWrapper{
 
    float length,width;
    string color;
 public:
+   //constrctors
    CandyWrapper(){length = 0.0;width=0.0;color="NA";};
    CandyWrapper(float len,float wid,string col){length = len; width=wid; color = col;};
    CandyWrapper(CandyWrapper const &Old){length = Old.length; width=Old.width; color = Old.color;};
@@ -83,7 +100,9 @@ public:
    
  //  };
 }; 
-   void CandyWrapper::printItem(){
+   
+   void CandyWrapper::printItem()
+   {
        cout<<"a length of"<<length<<" in, a width of "<<width<<" in and a "<<color<<" color";
    }
 
@@ -140,7 +159,7 @@ Candy::Candy(Candy const&old):Food(old)
 void Candy::printItem()
 {
 
-Food::printItem();
+Food::printItem("candy");
 candyWrap.printItem();
 cout<<"and a sweetness level of"<<sweetness;
 
@@ -196,7 +215,7 @@ bool Candy::operator ==(Candy &Candy_2)
         return true;
     }  
     else
-    return false;
+  {  return false;}
       
 
 
@@ -205,7 +224,42 @@ bool Candy::operator ==(Candy &Candy_2)
 
 }
 
+/* API documentation
 
+mutators for food
+getVol()-returns volumme of that instance
+getCal()-returns calories of that instance
+getVeg()-returns vegetatrian bin of that instance
+ 
+accessors-for food
+void setVol(float vol)-set volumne
+void setcal(int cal)set calories
+void setVeg(bool veg)set vegetarian
+
+methods-for food
+printItem()- outputs all objects
+printItem(string)-made for the candy class "vegetarina candy"
+
+/ ******************************************** /
+CandyWrapper Class
+mutatotrs-for candywrapper
+
+SetLen(float len)
+SetWid(float wid)
+SetCol(string col)
+
+//accessors
+float GetLen()
+float GetWid()
+string GetCol()
+/ ******************************************** /
+
+Candy Class- inherits pulic food and composes candyWrapper;
+
+
+
+
+*/
 int main()
 {
 Food fd1 = Food(1,200,true);
