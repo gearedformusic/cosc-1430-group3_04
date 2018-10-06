@@ -8,11 +8,9 @@ This class will have the following properties:
 - A protected member of type bool called vegetarian
 - A default constructor that sets the volume to 0, the calories to 0 and vegetarian to true.
 - A constructor that takes a volume, calories and vegetarian as parameters.
-
 - A copy constructor.
 - Public accessors and mutators for volume, calories and vegetarian.
 - The class overloads the operator ==
-
 - A function called printItem() printing the a description of the class in the following
 format
 I am a vegetarian Food, my volume is 0.05 fl. Oz and I have 100
@@ -23,6 +21,7 @@ I am not​ a vegetarian Food, my volume is 0.05 fl. Oz and I have
 3*/
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 
@@ -52,7 +51,11 @@ public:
 	//Accessors
 	float GetVolume(){ return volume; }
 	int GetCalories(){ return calories; }
-	bool GetVegetarian(){return vegetarian;}
+	string GetVegetarian(){
+	    if(vegetarian)
+            return "a vegetarian";
+        else
+            return "not a vegetarian";}
 	void printItem();
 };
 
@@ -79,10 +82,7 @@ bool Food::operator==(Food yum) {
 }
 
 void Food::printItem() {
-	cout << "I am";
-	if (!GetVegetarian())
-		cout << " not";
-	cout << " a vegetarian Food, my volume is " << GetVolume() << " fl. Oz and I have " << GetCalories() << " calories"<< endl;
+	cout << "I am " << GetVegetarian() <<" Food, my volume is " << GetVolume() << " fl. Oz and I have " << GetCalories() << " calories"<< endl;
 }
 
 
@@ -90,13 +90,13 @@ void Food::printItem() {
 int main()
 {
 	/*//Test bench
-	Food fd1 = Food(1, 200, false);
+	Food fd1 = Food(1, 200, true);
 	Food fd2 = Food(fd1);
 	fd1.printItem();
 	if(fd1 == fd2)
 	fd1.printItem();
-	*/
+    */
+    return 0;
 
 
 }
-
