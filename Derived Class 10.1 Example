@@ -1,0 +1,36 @@
+//Derived class example from zybooks 10.1
+
+
+#include <iostream>
+using namespace std;
+
+class Vehicle {
+public:
+   void SetSpeed(int speedToSet) {
+      speed = speedToSet;
+   };
+
+   void PrintSpeed() {
+      cout << speed;
+   };
+
+private:
+   int speed;
+};
+
+class Car : public Vehicle {
+public:
+   void PrintCarSpeed() {
+      cout << "Moving at: ";
+      PrintSpeed();
+   };
+};
+
+int main() {
+   Car myCar;
+   myCar.SetSpeed(25);
+
+   myCar.PrintCarSpeed();
+
+   return 0;
+}
