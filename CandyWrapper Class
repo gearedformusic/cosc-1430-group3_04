@@ -1,3 +1,8 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
 class CandyWrapper
 {
 public:
@@ -5,9 +10,9 @@ public:
 	CandyWrapper(float len, float wid, string col); // Constructor that takes parameters
 	CandyWrapper(const CandyWrapper& other); // Copy Constructor
 	// Mutators
-	void SetLength(float len) { len = length; }
-	void SetWidth(float wid) { wid = width; }
-	void SetColor(string col) { col = color; }
+	void SetLength(float len) { length = len; }
+	void SetWidth(float wid) { width = wid; }
+	void SetColor(string col) { color = col; }
 	// Accessors
 	float GetLength() { return length;}
 	float GetWidth() { return width; }
@@ -42,4 +47,12 @@ CandyWrapper::CandyWrapper(const CandyWrapper& other)
 	length = other.length;
 	width = other.width;
 	color = other.color;
+}
+
+int main()
+{
+	CandyWrapper cw1 = CandyWrapper(1, 0.5, "red");
+	CandyWrapper cw2 = CandyWrapper(0.5, 0.25, "blue");
+
+	return 0;
 }
