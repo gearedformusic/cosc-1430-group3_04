@@ -4,22 +4,23 @@ import java.util.Scanner;
 
 public class ReadingInput
 {
-	private int sudokuInputs[];
+	private int sudokuInputs[][];
 	// Reads the input from the file and puts into an int array.
 	// *Note* make sure the text file is changed so its separated into 9 lines not just 1.
 	public ReadingInput()
 	{
-		sudokuInputs = new int[81];
+		sudokuInputs = new int[9][9];
 		Scanner scanner = null;
 		try
 		{
 			scanner = new Scanner(new FileReader("samplesudoku1.txt"));
 			while(scanner.hasNext())
 			{
-				for(int i = 0; i < 81; i++)
-				{
-					sudokuInputs[i] = scanner.nextInt();
-				}
+				for(int j = 0; j < 9; j++)
+					for(int i = 0; i < 9; i++)
+					{
+						sudokuInputs[i][j] = scanner.nextInt();
+					}
 			}
 			scanner.close();
 		}
@@ -32,7 +33,11 @@ public class ReadingInput
 	/*public static void main(String[] args)
 	{
 		ReadingInput a = new ReadingInput();
-		for(int i = 0; i < 81; i++)
-			System.out.println(a.sudokuInputs[i]);
+		for(int i = 0; i < 9; i++)
+		{
+			System.out.println( );
+			for(int j = 0; j < 9; j++)
+				System.out.print(a.sudokuInputs[j][i]);
+		}
 	}*/
 }
