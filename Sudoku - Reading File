@@ -11,6 +11,7 @@ public class ReadingInput
 	{
 		sudokuInputs = new int[9][9];
 		Scanner scanner = null;
+		// Used for user input
 		Scanner reader = null;
 		try
 		{
@@ -38,9 +39,15 @@ public class ReadingInput
 			e.printStackTrace();
 		}
 	}
-	// Test to see if numbers in array.
-	/*public static void main(String[] args)
+	// Accessor for array
+	public int[][] getArray()
 	{
+		return java.util.Arrays.copyOf(sudokuInputs, sudokuInputs.length);
+	}
+	public static void main(String[] args)
+	{
+		// Test to see if numbers in array
+		/*
 		ReadingInput a = new ReadingInput();
 		for(int i = 0; i < 9; i++)
 		{
@@ -48,5 +55,17 @@ public class ReadingInput
 			for(int j = 0; j < 9; j++)
 				System.out.print(a.sudokuInputs[j][i]);
 		}
-	}*/
+		*/
+		// Test getArray function
+		/*
+		ReadingInput a = new ReadingInput();
+		int array[][] = a.getArray();
+		for(int i = 0; i < 9; i++)
+		{
+			System.out.println( );
+			for(int j = 0; j < 9; j++)
+				System.out.print(array[j][i]);
+		}
+		*/
+	}
 }
