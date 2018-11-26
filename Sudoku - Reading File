@@ -11,8 +11,17 @@ public class ReadingInput
 	{
 		sudokuInputs = new int[9][9];
 		Scanner scanner = null;
+		Scanner reader = null;
 		try
 		{
+			// Add this if you want to get a user input for the text file
+			/*
+			System.out.println("Enter text file: ");
+			reader = new Scanner(System.in);
+			String n = reader.nextLine();
+			scanner = new Scanner(new FileReader(n));
+			*/
+			// Delete the below line and add the top section to use user input to recieve text file
 			scanner = new Scanner(new FileReader("samplesudoku1.txt"));
 			while(scanner.hasNext())
 			{
