@@ -6,24 +6,38 @@ public class ReadingInput
 {
 	private int sudokuInputs[][];
 	// Reads the input from the file and puts into an int array.
-	// *Note* make sure the text file is changed so its separated into 9 lines not just 1.
+	// *Note* make sure the text file is changed so its separated into 9 lines.
+	// Default Constructor
 	public ReadingInput()
 	{
 		sudokuInputs = new int[9][9];
 		Scanner scanner = null;
-		// Used for user input
-		Scanner reader = null;
 		try
 		{
-			// Add this if you want to get a user input for the text file
-			/*
-			System.out.println("Enter text file: ");
-			reader = new Scanner(System.in);
-			String n = reader.nextLine();
-			scanner = new Scanner(new FileReader(n));
-			*/
-			// Delete the below line and add the top section to use user input to recieve text file
 			scanner = new Scanner(new FileReader("samplesudoku1.txt"));
+			while(scanner.hasNext())
+			{
+				for(int j = 0; j < 9; j++)
+					for(int i = 0; i < 9; i++)
+					{
+						sudokuInputs[i][j] = scanner.nextInt();
+					}
+			}
+			scanner.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	// Constructor with an input
+	public ReadingInput(String input)
+	{
+		sudokuInputs = new int[9][9];
+		Scanner scanner = null;
+		try
+		{
+			scanner = new Scanner(new FileReader(input));
 			while(scanner.hasNext())
 			{
 				for(int j = 0; j < 9; j++)
@@ -48,7 +62,7 @@ public class ReadingInput
 	{
 		// Test to see if numbers in array
 		/*
-		ReadingInput a = new ReadingInput();
+		ReadingInput a = new ReadingInput("samplesudoku2.txt");
 		for(int i = 0; i < 9; i++)
 		{
 			System.out.println( );
